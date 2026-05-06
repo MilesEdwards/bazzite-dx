@@ -1,6 +1,8 @@
 ---
 name: Build Bazzite DX
 on:
+  schedule:
+    - cron: "40 4 * * 2" # 4:40 utc tuesday
   repository_dispatch:
     types:
       - build
