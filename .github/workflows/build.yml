@@ -12,7 +12,7 @@ env:
   IMAGE_NAME: "${{ github.event.repository.name }}" # the name of the image produced by this build, matches repo names
   IMAGE_DESC: "${{ github.event.repository.description }}"
   IMAGE_REGISTRY: "ghcr.io/${{ github.repository_owner }}" # do not edit
-  ARTIFACTHUB_LOGO_URL: "https://avatars.githubusercontent.com/u/187439889?s=200&v=4"
+  ARTIFACTHUB_LOGO_URL: "https://avatars.githubusercontent.com/u/51699636"
 
   # The tag used in the image from which we base of.
   # ex.: ghcr.io/org/image:IMAGE_SOURCE_TAG
@@ -33,10 +33,8 @@ jobs:
       fail-fast: false
       matrix:
         base_image:
-          - bazzite-deck
-          - bazzite-deck-gnome
-          - bazzite-deck-nvidia-gnome
-          - bazzite-deck-nvidia
+          - bazzite
+          - bazzite-gnome
 
     env:
       BASE_IMAGE: ${{ matrix.base_image }}
