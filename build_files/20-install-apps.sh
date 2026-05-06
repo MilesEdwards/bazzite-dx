@@ -50,22 +50,22 @@ rm -f /usr/share/gamescope-session-plus/bootstrap_steam.tar.gz
 systemctl disable bazzite-autologin.service
 dnf5 remove -y steamos-manager
 
-if [[ "$IMAGE_NAME" == *gnome* ]]; then
-    # Remove SDDM and re-enable GDM on GNOME builds.
-    dnf5 remove -y \
-        sddm
+# if [[ "$IMAGE_NAME" == *gnome* ]]; then
+#     # Remove SDDM and re-enable GDM on GNOME builds.
+#     dnf5 remove -y \
+#         sddm
 
-    systemctl enable gdm.service
-else
-    # Re-enable logout and switch user functionality in KDE
-    sed -i -E \
-      -e 's/^(action\/switch_user)=false/\1=true/' \
-      -e 's/^(action\/start_new_session)=false/\1=true/' \
-      -e 's/^(action\/lock_screen)=false/\1=true/' \
-      -e 's/^(kcm_sddm\.desktop)=false/\1=true/' \
-      -e 's/^(kcm_plymouth\.desktop)=false/\1=true/' \
-      /etc/xdg/kdeglobals
-fi
+#     systemctl enable gdm.service
+# else
+#     # Re-enable logout and switch user functionality in KDE
+#     sed -i -E \
+#       -e 's/^(action\/switch_user)=false/\1=true/' \
+#       -e 's/^(action\/start_new_session)=false/\1=true/' \
+#       -e 's/^(action\/lock_screen)=false/\1=true/' \
+#       -e 's/^(kcm_sddm\.desktop)=false/\1=true/' \
+#       -e 's/^(kcm_plymouth\.desktop)=false/\1=true/' \
+#       /etc/xdg/kdeglobals
+# fi
 
 
 dnf5 install --enable-repo="copr:copr.fedorainfracloud.org:ublue-os:packages" -y \
